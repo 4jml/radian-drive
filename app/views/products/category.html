@@ -1,0 +1,15 @@
+<div class="actionbar">
+	<h3>{{ category.name }}</h3>
+	<input type="text" ng-model="search" placeholder="Filter les résultats">
+</div>
+
+<div class="product" ng-repeat="product in products | filter : search">
+	<img class="image" src="http://dummyimage.com/130x130/a8a8a8/ffffff&text={{ product.name }}" alt="Image">
+	<div class="informations">
+		<div class="title">{{ product.name }}</div>
+		<div class="price">{{ product.price }} €</div>
+	</div>
+	<div class="actions">
+		<button class="btn btn-default btn-xs" ng-click="addToBasket(product)"><span class="fa fa-plus"></span> Ajouter au panier</button>
+	</div>
+</div>
