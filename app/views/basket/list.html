@@ -1,0 +1,17 @@
+<h3>Mon panier</h3>
+
+<table class="table table-striped">
+	<tr>
+		<th>Nom</th>
+		<th>Quantité</th>
+		<th>Prix</th>
+	</tr>
+	<tr ng-repeat="product in products">
+		<td>{{ product.name }}</td>
+		<td><input type="number" min="0" class="quantity" ng-model="product.quantity" value="{{ product.quantity }}"/></td>
+		<td>{{ product.price }}</td>
+	</tr>
+</table>
+
+<button ng-click="validate()" class="btn btn-success">Valider la commande</button>
+<button ng-click="update()" class="btn btn-primary">Mettre à jour</button>

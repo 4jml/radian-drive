@@ -10,7 +10,7 @@ var gulp = require('gulp'),
  */
 
 gulp.task('assets-css', function() {
-	return gulp.src('css/main.less')
+	return gulp.src('app/main.less')
 		.pipe(plumber())
 		.pipe(less().on('error', function(e) { console.log(e); }))
 		.pipe(rename('app.css'))
