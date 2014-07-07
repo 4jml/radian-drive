@@ -12,14 +12,31 @@
 
 </head>
 <body>
+	<div id="shop_select" ng-controller="ShopController" ng-show="! shop">
+		<div class="popup">
+			<h4>Bonjour et bienvenue sur radian-drive.fr !</h4>
+			<p>Avant toute chose, veuillez choisir le magasin le plus proche de chez vous parmi la liste :</p>
+			<form ng-submit="submit()">
+				<div class="form-group">
+					<select name="shops" class="form-control" ng-model="selectedShop" ng-options="shop as shop.name for shop in shops" required>
+					</select>
+				</div>
+				<button type="submit" class="btn btn-success" ng-disabled="! selectedShop">Accéder au drive</button>
+			</form>
+		</div>
+	</div>
+
 	<div class="wrapper">
 		<div class="box">
 			<div class="row">
 				<!-- sidebar -->
 				<div class="column col-sm-3" id="sidebar" ng-controller="MenuController" sidemenu>
-					<a class="logo" href="#">
-						Radian Drive
-					</a>
+					<div class="logo">
+						<a href="#">
+							Radian Drive
+						</a><br />
+						<span>{{ shop.name }}</span>
+					</div>
 					<ul class="nav">
 						<li ng-class="{ 'dropdown' : section.categories }" ng-repeat="section in sections">
 							<a ng-show="section.categories" href="">
@@ -58,6 +75,7 @@
 
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.cookie.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.min.js"></script>
 	<script src="https://code.angularjs.org/1.2.18/angular-route.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>

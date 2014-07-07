@@ -1,7 +1,16 @@
 var radianDrive = angular.module('radianDrive' , [ 'ngRoute' , 'restangular' ]);
 
-radianDrive.run(function($rootScope, BasketService) {
+radianDrive.run(function($rootScope, Restangular, BasketService) {
+	// Hydrate basket from session
 	BasketService.load();
+
+	// Loading selected shop if there is one
+	if (typeof $.cookie('shop_id') != "undefined")
+	{
+		Restangular.one('shops').get().then(function(shop) {
+		$rootScope.shop = shop;
+	});
+	}
 });
 
 radianDrive.config(['$routeProvider',

@@ -65,21 +65,25 @@ a {
 #sidebar {
 	padding: 0;
 
-	a.logo {
+	.logo {
 		display:block;
 		padding:3px;
 		background-color:#000;
-		color:#fff;
 		height:70px;
 		/*width:40px;*/
 		padding:15px;
-		font-size:30px;
-		font-weight:700;
 		text-align:center;
-		text-decoration:none;
-		text-shadow:0 0 0;
 		opacity: 0.7;
-		text-transform: uppercase;
+
+		a {
+			text-transform: uppercase;
+			text-decoration:none;
+			font-size:30px;
+			font-weight:700;
+			color:#fff;
+			text-shadow:0 0 0;
+
+		}
 	}
 
 	.nav {
@@ -175,4 +179,25 @@ input.quantity {
 	border-radius: 20px;
 	padding-left: 6px;
 	padding-right: 3px;
+}
+
+#shop_select {
+	bottom: 0; /* increase for footer use */
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+	z-index: 5000;
+	background: rgba(0, 0, 0, 0.6);
+
+	.popup {
+		margin: 0 auto;
+		margin-top: 200px;
+		padding: 10px 20px 10px 20px;
+		width: 500px;
+		height: 200px;
+		background: white;
+		border: 1px solid black;
+		box-shadow: 0 0 6px #000
+	}
 }
