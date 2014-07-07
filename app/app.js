@@ -39,9 +39,9 @@ radianDrive.config(['$routeProvider',
 
 radianDrive.config(function(RestangularProvider) {
 	RestangularProvider.setBaseUrl(API_URL);
-	// RestangularProvider.setDefaultHeaders({
-	// 	'x-application': 'radian_drive',
-	// });
+	RestangularProvider.setDefaultHeaders({
+		'radian_app': 'radian_drive',
+	});
 	// RestangularProvider.setDefaultHttpFields({
 	// 	headers: {
 	// 		test: 'test'
