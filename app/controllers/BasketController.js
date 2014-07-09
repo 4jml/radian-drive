@@ -15,3 +15,11 @@ radianDrive.controller('BasketListController', function ($scope, $routeParams, R
 		});
 	};
 });
+radianDrive.controller('BasketValidController', function ($scope, $rootScope, $location, AuthService, SessionService, Restangular) {
+	if (! AuthService.isAuthenticated()) {
+		$location.path('/auth');
+	}
+	Restangular.all('basket/products').getList().then(function(products) {
+		$scope.products = products;
+	});
+});

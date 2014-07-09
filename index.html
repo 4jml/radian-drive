@@ -53,6 +53,7 @@
 					<ul class="nav" id="sidebar-footer">
 						<li><a href="#/basket">Mon panier ({{ countBasket() }})</a></li>
 						<li><a href="">Mon compte</a></li>
+						<li ng-if="isAuthenticated()"><a href="#/disconnect">Déconnexion</a></li>
 					</ul>
 				</div>
 				<!-- /sidebar -->
