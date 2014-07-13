@@ -2,7 +2,7 @@ radianDrive.controller('ProductsCategoryController', function ($scope, $routePar
 	Restangular.one('categories', $routeParams.id).get().then(function(category) {
 		$scope.category = category;
 	});
-	Restangular.all('products').getList().then(function(products) {
+	Restangular.one('categories', $routeParams.id).all('products').getList().then(function(products) {
 		$scope.products = products;
 	});
 });

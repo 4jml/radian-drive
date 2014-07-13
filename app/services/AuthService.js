@@ -7,9 +7,11 @@ radianDrive.factory('AuthService', function ($rootScope, Restangular, SessionSer
 			.then(
 				function (customer) {
 					SessionService.create(customer);
+					$rootScope.$broadcast("LOGIN_ATTEMPT");
 				},
 				function (customer) {
 					SessionService.create({ id : null, lastname: null, firstname: null });
+					$rootScope.$broadcast("LOGIN_ATTEMPT");
 				}
 			);
 		},

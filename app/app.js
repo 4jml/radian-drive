@@ -1,19 +1,35 @@
 var radianDrive = angular.module('radianDrive' , [ 'ngRoute' , 'restangular' ]);
 
-radianDrive.run(function($rootScope, Restangular, BasketService, AuthService) {
+radianDrive.run(function($rootScope, Restangular, BasketService, AuthService, $location) {
 	// Hydrate basket from session
 	BasketService.load();
 
 	// Login customer
 	AuthService.login(null);
 
+	moment.lang('fr');
+	$rootScope.shop = null;
+
 	// Loading selected shop if there is one
-	if (typeof $.cookie('shop_id') != "undefined")
-	{
+	if (typeof $.cookie('shop_id') != "undefined") {
 		Restangular.one('shops').get().then(function(shop) {
-		$rootScope.shop = shop;
-	});
+			$rootScope.shop = shop[0];
+		});
 	}
+	else {
+		$rootScope.shop = { id : 0 };
+	}
+
+	var history = [];
+
+	$rootScope.$on('$routeChangeSuccess', function() {
+		history.push($location.$$path);
+	});
+
+	$rootScope.back = function () {
+		var prevUrl = history.length > 1 ? history.splice(-2)[0] : "/";
+		$location.path(prevUrl);
+	};
 });
 
 radianDrive.config(['$routeProvider',
@@ -52,11 +68,17 @@ radianDrive.config(['$routeProvider',
 			routeTitle: 'Valider votre commande',
 			routeName: 'basket_valid'
 		}).
+		when('/basket/finish', {
+			templateUrl: 'app/views/basket/finish.html',
+			controller: 'BasketFinishController',
+			routeTitle: 'Commande terminée',
+			routeName: 'basket_finish'
+		}).
 		otherwise({
 			redirectTo: '/'
 		});
 	}
-]);
+	]);
 
 radianDrive.config(function(RestangularProvider) {
 	RestangularProvider.setBaseUrl(API_URL);
@@ -68,7 +90,7 @@ radianDrive.config(function(RestangularProvider) {
 	// 		test: 'test'
 	// 	}
 	// });
-	RestangularProvider.setDefaultHttpFields({
-		'withCredentials': true
-	});
+RestangularProvider.setDefaultHttpFields({
+	'withCredentials': true
+});
 });

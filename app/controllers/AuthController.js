@@ -1,10 +1,10 @@
-radianDrive.controller('AuthController', function ($scope, $routeParams, Restangular, AuthService, SessionService, $location) {
+radianDrive.controller('AuthController', function ($rootScope, $scope, $routeParams, Restangular, AuthService, SessionService, $location) {
 	$scope.step = 0;
 	$scope.login = function() {
 		AuthService.login($scope.user).then(
 		function() {
 			if ($scope.isAuthenticated()) {
-				$location.path('/');
+				$rootScope.back();
 			}
 		});
 	}
@@ -30,8 +30,8 @@ radianDrive.controller('AuthController', function ($scope, $routeParams, Restang
 		}
 	}
 });
-radianDrive.controller('DisconnectController', function (SessionService, $location, Restangular) {
+radianDrive.controller('DisconnectController', function ($rootScope, SessionService, $location, Restangular) {
 	Restangular.all('customers').customGET('disconnect');
 	SessionService.destroy();
-	$location.path('/');
+	$rootScope.back();
 });
