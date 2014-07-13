@@ -11,8 +11,8 @@
 	<link href="dist/app.css" rel="stylesheet">
 
 </head>
-<body>
-	<div id="shop_select" ng-controller="ShopController" ng-show="! shop">
+<body ng-class="{ noshop : shop.id == 0 }">
+	<div id="shop_select" ng-controller="ShopController">
 		<div class="popup">
 			<h4>Bonjour et bienvenue sur radian-drive.fr !</h4>
 			<p>Avant toute chose, veuillez choisir le magasin le plus proche de chez vous parmi la liste :</p>
@@ -74,13 +74,14 @@
 		</div>
 	</div>
 
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/jquery.cookie.js"></script>
-	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.min.js"></script>
-	<script src="https://code.angularjs.org/1.2.18/angular-route.min.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/restangular/1.4.0/restangular.min.js"></script>
+	<script src="js/moment.i8n.min.js"></script>
+	<script src="js/angular.min.js"></script>
+	<script src="js/angular-route.min.js"></script>
+	<script src="js/lodash.min.js"></script>
+	<script src="js/restangular.min.js"></script>
 	<script src="conf.js"></script>
 	<script src="dist/app.js"></script>
 </body>
