@@ -16,11 +16,18 @@ radianDrive.controller('BasketListController', function ($scope, $routeParams, R
 	};
 });
 radianDrive.controller('BasketValidController', function ($scope, $rootScope, $location, AuthService, SessionService, Restangular) {
-	$rootScope.$on('LOGIN_ATTEMPT', function() {
-        if (! AuthService.isAuthenticated()) {
+	if ($rootScope.firstAuth) {
+		if (! AuthService.isAuthenticated()) {
 			$location.path('/auth');
 		}
-    });
+	}
+	else {
+		$rootScope.$on('LOGIN_ATTEMPT', function() {
+			if (! AuthService.isAuthenticated()) {
+				$location.path('/auth');
+			}
+		});
+	}
 
 	$scope.total = 0;
 	Restangular.all('basket/products').getList().then(function(products) {

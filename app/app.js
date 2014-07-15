@@ -1,6 +1,8 @@
 var radianDrive = angular.module('radianDrive' , [ 'ngRoute' , 'restangular' ]);
 
 radianDrive.run(function($rootScope, Restangular, BasketService, AuthService, $location) {
+	$rootScope.firstAuth = false;
+
 	// Hydrate basket from session
 	BasketService.load();
 
@@ -85,12 +87,7 @@ radianDrive.config(function(RestangularProvider) {
 	RestangularProvider.setDefaultHeaders({
 		'radian_app': 'radian_drive',
 	});
-	// RestangularProvider.setDefaultHttpFields({
-	// 	headers: {
-	// 		test: 'test'
-	// 	}
-	// });
-RestangularProvider.setDefaultHttpFields({
-	'withCredentials': true
-});
+	RestangularProvider.setDefaultHttpFields({
+		'withCredentials': true
+	});
 });

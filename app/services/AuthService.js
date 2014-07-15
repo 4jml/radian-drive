@@ -7,6 +7,7 @@ radianDrive.factory('AuthService', function ($rootScope, Restangular, SessionSer
 			.then(
 				function (customer) {
 					SessionService.create(customer);
+					$rootScope.firstAuth = true;
 					$rootScope.$broadcast("LOGIN_ATTEMPT");
 				},
 				function (customer) {
