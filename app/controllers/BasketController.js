@@ -1,7 +1,14 @@
 radianDrive.controller('BasketListController', function ($scope, $routeParams, Restangular, $timeout) {
+	$scope.total = 0;
 	Restangular.all('basket/products').getList().then(function(products) {
 		$scope.products = products;
+		angular.forEach($scope.products, function(value, key) {
+			for (var i = 0; i < value.quantity; i++) {
+				$scope.total += value.price * 1;
+			};
+		});
 	});
+
 
 	$scope.update = function() {
 		var basket = [];
