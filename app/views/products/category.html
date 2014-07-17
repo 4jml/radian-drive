@@ -4,7 +4,7 @@
 </div>
 
 <div class="product" ng-repeat="product in products | filter : search">
-	<img class="image" src="http://dummyimage.com/130x130/a8a8a8/ffffff&text={{ product.name }}" alt="Image">
+	<img class="image" src="{{ product.image }}" alt="Image" width="130">
 	<div class="informations">
 		<div class="title">{{ product.name }}</div>
 		<div class="price">{{ product.price }} €</div>
